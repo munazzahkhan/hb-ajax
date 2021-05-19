@@ -2,11 +2,15 @@
 
 // PART 1: SHOW A FORTUNE
 
-const showFortune = (evt) => {
-  // TODO: get the fortune and show it in the #fortune-text div
-};
+// const showFortune = (evt) => {
+//   // TODO: get the fortune and show it in the #fortune-text div
+// };
 
-$('#get-fortune-button').on('click', showFortune);
+// $('#get-fortune-button').on('click', showFortune);
+
+$.get('/fortune', (response) => {
+  $('#fortune-text').html(response);
+});
 
 // PART 2: SHOW WEATHER
 
@@ -15,11 +19,13 @@ const showWeather = (evt) => {
 
   const url = '/weather.json';
   const formData = { zipcode: $('#zipcode-field').val() };
-
-  // TODO: request weather with that URL and show the forecast in #weather-info
+  $.get('/weather.json', {zipcode: '#zipcode-field'}, (res) => {
+    $('#weather-info').text(res.forecast);
+  });
 };
 
 $('#weather-form').on('submit', showWeather);
+
 
 // PART 3: ORDER MELONS
 
